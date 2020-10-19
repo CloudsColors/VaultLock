@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.mobcomp.vaultlock.databinding.FragmentMenuBinding
 
 
 /**
@@ -21,7 +22,7 @@ class MenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
+        val binding = DataBindingUtil.inflate<FragmentMenuBinding>(inflater,
             R.layout.fragment_menu,container,false)
         return binding.root
     }
