@@ -23,7 +23,7 @@ import kotlin.math.roundToInt
 class LockFragment : Fragment(), View.OnTouchListener {
 
     private lateinit var binding: FragmentLockBinding
-    private val pass = arrayOf(11,5,9,2)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
