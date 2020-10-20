@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.mobcomp.vaultlock.databinding.FragmentLockBinding
 
@@ -21,6 +22,7 @@ import kotlin.math.roundToInt
 class LockFragment : Fragment(), View.OnTouchListener {
 
     private lateinit var binding: FragmentLockBinding
+    private val pass = arrayOf(11,5,9,2)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +35,7 @@ class LockFragment : Fragment(), View.OnTouchListener {
         return binding.root
     }
 
-    fun updateRotation(x: Float, y: Float) {
+    private fun updateRotation(x: Float, y: Float) {
         var r : Double = Math.atan2((x - binding.vaultLock.width / 2).toDouble(),
             (binding.vaultLock.height / 2 - y).toDouble()
         )
@@ -65,6 +67,18 @@ class LockFragment : Fragment(), View.OnTouchListener {
         }
     }
 
+    //Does not do anything yet
+    private fun passwordLogic(){
+        var builder = StringBuilder()
+        for( i in pass){
+            builder.append(""+ i)
+
+        }
+
+        Toast.makeText(context, builder, Toast.LENGTH_SHORT )
+
+    }
+
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         var x : Float = event?.getX() ?: 0f
         var y : Float = event?.getY() ?: 0f
@@ -73,6 +87,7 @@ class LockFragment : Fragment(), View.OnTouchListener {
             when(event.action){
                 MotionEvent.ACTION_MOVE -> {
                     updateRotation(x,y)
+
                 }
             }
         }
