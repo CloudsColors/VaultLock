@@ -12,7 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.mobcomp.vaultlock.R
+import com.mobcomp.vaultlock.database.PasswordDatabase
 import com.mobcomp.vaultlock.databinding.FragmentLockBinding
 
 import kotlin.math.roundToInt
@@ -31,6 +33,17 @@ class LockFragment : Fragment(), View.OnTouchListener {
             inflater, R.layout.fragment_lock, container, false
         )
         binding.root.setOnTouchListener(this)
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = PasswordDatabase.getInstance(application).passwordDatabaseDao
+
+        val viewModelFactory = LockViewModelFactory(dataSource, application)
+
+        val sleepTrackerViewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(LockViewModel::class.java)
+
         return binding.root
     }
 
@@ -64,18 +77,6 @@ class LockFragment : Fragment(), View.OnTouchListener {
         } else {
             vibrator.vibrate(50)
         }
-    }
-
-    //Does not do anything yet
-    private fun passwordLogic(){
-        var builder = StringBuilder()
-        for( i in pass){
-            builder.append(""+ i)
-
-        }
-
-        Toast.makeText(context, builder, Toast.LENGTH_SHORT )
-
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
