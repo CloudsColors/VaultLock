@@ -1,10 +1,12 @@
 package com.mobcomp.vaultlock.lock
 
 import android.content.Context
+import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -24,7 +26,6 @@ class LockFragment : Fragment(), View.OnTouchListener {
 
     private lateinit var binding: FragmentLockBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +41,17 @@ class LockFragment : Fragment(), View.OnTouchListener {
 
         val viewModelFactory = LockViewModelFactory(dataSource, application)
 
-        val sleepTrackerViewModel =
+        val lockViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(LockViewModel::class.java)
+
+        binding.lockViewModel = lockViewModel
+
+        binding.setLifecycleOwner(this)
+
+        binding.resetButton.setOnClickListener {
+            resetButton()
+        }
 
         return binding.root
     }
@@ -59,6 +68,7 @@ class LockFragment : Fragment(), View.OnTouchListener {
         }
         binding.vaultLock.rotation = snapToPosition
         updateText(rotation)
+        binding.lockViewModel?.knobTurn((snapToPosition/30).roundToInt())
         vibrate()
     }
 
@@ -87,10 +97,16 @@ class LockFragment : Fragment(), View.OnTouchListener {
             when(event.action){
                 MotionEvent.ACTION_MOVE -> {
                     updateRotation(x,y)
-
+                    return true
                 }
             }
         }
         return true
+    }
+
+    fun resetButton(){
+        Log.d("Heya", "Yooooo")
+        binding.lockViewModel?.resetPassword()
+        binding.vaultLock.rotation = 0f
     }
 }
