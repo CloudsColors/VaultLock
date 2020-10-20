@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/lockFragment"
-        android:name="com.mobcomp.vaultlock.LockFragment"
+        android:name="com.mobcomp.vaultlock.lock.LockFragment"
         android:label="fragment_lock"
         tools:layout="@layout/fragment_lock" />
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.mobcomp.vaultlock.MenuFragment"
+        android:name="com.mobcomp.vaultlock.main.MenuFragment"
         android:label="MenuFragment" />
 </navigation>

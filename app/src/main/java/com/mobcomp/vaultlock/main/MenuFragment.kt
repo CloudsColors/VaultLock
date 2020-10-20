@@ -1,4 +1,4 @@
-package com.mobcomp.vaultlock
+package com.mobcomp.vaultlock.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.mobcomp.vaultlock.R
 import com.mobcomp.vaultlock.databinding.FragmentMenuBinding
 
 
