@@ -1,11 +1,13 @@
 package com.mobcomp.vaultlock.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.mobcomp.vaultlock.R
 import com.mobcomp.vaultlock.database.Note
@@ -23,13 +25,24 @@ class CreateNoteFragment : Fragment() {
     ): View? {
         val application = requireNotNull(this.activity).application
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
-        binding =  DataBindingUtil.inflate<FragmentCreateNoteBinding>(inflater, R.layout.fragment_create_note, container, false)
-        binding.saveButton.setOnClickListener {
+        val viewModelFactory = ViewModelFactory(dataSource, application)
+
+        // Get a reference to the ViewModel associated with this fragment.
+        val createNoteViewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(CreateNoteViewModel::class.java)
+
+        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_create_note, container, false)
+        /*binding.saveButton.setOnClickListener {
             val note = Note()
             note.noteTitle = binding.titleText.toString()
             note.note = binding.textNote.toString()
+            //insert(note, dataSource)
             view?.findNavController()?.navigate(R.id.action_createNoteFragment_to_menuFragment3)
-        }
+        }*/
+
+        binding.createNoteViewModel = createNoteViewModel
+
         binding.clearButton.setOnClickListener {
             binding.textNote.text.clear()
             binding.titleText.text.clear()
@@ -38,6 +51,7 @@ class CreateNoteFragment : Fragment() {
     }
 
     private suspend fun insert(note: Note, dataSource: NoteDatabaseDao){
+        Log.d("Heyaaaaa", "asdadsdasd")
         dataSource.insert(note)
     }
 }

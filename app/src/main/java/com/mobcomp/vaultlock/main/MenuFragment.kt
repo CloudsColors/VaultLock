@@ -1,10 +1,8 @@
 package com.mobcomp.vaultlock.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -37,7 +35,7 @@ class MenuFragment : Fragment() {
 
         // Create an instance of the ViewModel Factory.
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
-        val viewModelFactory = MenuViewModelFactory(dataSource, application)
+        val viewModelFactory = ViewModelFactory(dataSource, application)
 
         // Get a reference to the ViewModel associated with this fragment.
         val menuViewModel =

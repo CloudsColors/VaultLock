@@ -63,7 +63,7 @@ class LockFragment : Fragment(), View.OnTouchListener {
             unlockButton()
         }
 
-        lockViewModel.passwordText.observe(this, Observer{
+        lockViewModel.passwordText.observe(viewLifecycleOwner, Observer{
             binding.passwordText.text = it
         })
 
@@ -124,11 +124,11 @@ class LockFragment : Fragment(), View.OnTouchListener {
         Log.d("unlockButton","knobPos: $knobPos")
         var unlocked : Boolean? = binding.lockViewModel?.passwordLogic(knobPos)
         if(unlocked!!){
-            Toast.makeText(context, "Access has been granted", 2).show()
+            Toast.makeText(context, "Access has been granted", Toast.LENGTH_LONG).show()
             view?.findNavController()?.navigate(R.id.action_lockFragment_to_menuFragment)
         }else{
             resetButton()
-            Toast.makeText(context, "Wrong password", 2).show()
+            Toast.makeText(context, "Wrong password", Toast.LENGTH_LONG).show()
         }
     }
 
