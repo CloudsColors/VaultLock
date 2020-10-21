@@ -121,8 +121,8 @@ class LockFragment : Fragment(), View.OnTouchListener {
     }
 
     fun resetButton(){
-        Log.d("Heya", "Yooooo")
         binding.lockViewModel?.resetPassword()
         binding.vaultLock.rotation = 0f
+        updateText(0f)
     }
 }
