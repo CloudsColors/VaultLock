@@ -67,3 +67,4 @@ class LockViewModel(
         Log.d("KNOBDIRECTION", "direction: $direction knobPosition: $knobPosition knobPosCorrected: $knobPosCorrected")
     }
 }
+

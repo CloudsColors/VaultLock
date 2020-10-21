@@ -25,6 +25,7 @@ import kotlin.math.roundToInt
 class LockFragment : Fragment(), View.OnTouchListener {
 
     private lateinit var binding: FragmentLockBinding
+    private var rightPosition: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,10 @@ class LockFragment : Fragment(), View.OnTouchListener {
         binding = DataBindingUtil.inflate<FragmentLockBinding>(
             inflater, R.layout.fragment_lock, container, false
         )
+
         binding.root.setOnTouchListener(this)
+
+
 
         val application = requireNotNull(this.activity).application
 
@@ -95,10 +99,22 @@ class LockFragment : Fragment(), View.OnTouchListener {
 
         if (event != null) {
             when(event.action){
+                MotionEvent.ACTION_DOWN -> {
+                    if(x in 700.00..800.00 ) {
+                        rightPosition = true
+                    }
+                }
                 MotionEvent.ACTION_MOVE -> {
                     updateRotation(x,y)
-                    return true
+                    if(rightPosition){
+                        updateRotation(x,y)
+                    }
+
                 }
+                MotionEvent.ACTION_UP -> {
+                    rightPosition = false
+                }
+
             }
         }
         return true
