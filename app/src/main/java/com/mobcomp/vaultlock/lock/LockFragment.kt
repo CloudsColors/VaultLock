@@ -1,7 +1,6 @@
 package com.mobcomp.vaultlock.lock
 
 import android.content.Context
-import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -14,7 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.mobcomp.vaultlock.R
 import com.mobcomp.vaultlock.database.PasswordDatabase
 import com.mobcomp.vaultlock.databinding.FragmentLockBinding
@@ -57,6 +58,14 @@ class LockFragment : Fragment(), View.OnTouchListener {
             resetButton()
         }
 
+        binding.unlockButton.setOnClickListener {
+            unlockButton()
+        }
+
+        lockViewModel.passwordText.observe(this, Observer{
+            binding.passwordText.text = it
+        })
+
         return binding.root
     }
 
@@ -71,17 +80,8 @@ class LockFragment : Fragment(), View.OnTouchListener {
             return
         }
         binding.vaultLock.rotation = snapToPosition
-        updateText(rotation)
         binding.lockViewModel?.knobTurn((snapToPosition/30).roundToInt())
         vibrate()
-    }
-
-    private fun updateText(rotation: Float) {
-        var displayValue: Int = (rotation / 30).roundToInt()
-        if (displayValue <= 0) {
-            displayValue = displayValue + 12;
-        }
-        binding.value.text = displayValue.toString()
     }
 
     private fun vibrate() {
@@ -120,9 +120,20 @@ class LockFragment : Fragment(), View.OnTouchListener {
         return true
     }
 
+    fun unlockButton(){
+        var knobPos : Int = (binding.vaultLock.rotation / 30).roundToInt()
+        Log.d("unlockButton","knobPos: $knobPos")
+        var unlocked : Boolean? = binding.lockViewModel?.passwordLogic(knobPos)
+        if(unlocked!!){
+            view?.findNavController()?.navigate(R.id.action_lockFragment_to_menuFragment)
+        }else{
+            resetButton()
+            Toast.makeText(context, "Wrong password", 2).show()
+        }
+    }
+
     fun resetButton(){
         binding.lockViewModel?.resetPassword()
         binding.vaultLock.rotation = 0f
-        updateText(0f)
     }
 }

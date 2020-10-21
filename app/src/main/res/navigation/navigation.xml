@@ -9,7 +9,11 @@
         android:id="@+id/lockFragment"
         android:name="com.mobcomp.vaultlock.lock.LockFragment"
         android:label="fragment_lock"
-        tools:layout="@layout/fragment_lock" />
+        tools:layout="@layout/fragment_lock" >
+        <action
+            android:id="@+id/action_lockFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.mobcomp.vaultlock.main.MenuFragment"
