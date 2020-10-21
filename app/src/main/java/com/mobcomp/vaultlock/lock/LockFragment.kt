@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.findFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -109,12 +110,10 @@ class LockFragment : Fragment(), View.OnTouchListener {
                     if(rightPosition){
                         updateRotation(x,y)
                     }
-
                 }
                 MotionEvent.ACTION_UP -> {
                     rightPosition = false
                 }
-
             }
         }
         return true
@@ -125,6 +124,7 @@ class LockFragment : Fragment(), View.OnTouchListener {
         Log.d("unlockButton","knobPos: $knobPos")
         var unlocked : Boolean? = binding.lockViewModel?.passwordLogic(knobPos)
         if(unlocked!!){
+            Toast.makeText(context, "Access has been granted", 2).show()
             view?.findNavController()?.navigate(R.id.action_lockFragment_to_menuFragment)
         }else{
             resetButton()

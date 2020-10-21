@@ -2,6 +2,8 @@ package com.mobcomp.vaultlock
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.ui.NavigationUI
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 

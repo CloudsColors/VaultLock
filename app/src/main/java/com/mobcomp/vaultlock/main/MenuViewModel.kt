@@ -26,5 +26,9 @@ class MenuViewModel(
         _navigateToSearch.value = false
     }
 
+    private suspend fun getAll(){
+        database.getAll()
+    }
+
 
 }
