@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.mobcomp.vaultlock.R
@@ -35,6 +36,13 @@ class CreateNoteFragment : Fragment() {
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_create_note, container, false)
 
         binding.createNoteViewModel = createNoteViewModel
+
+        createNoteViewModel.navigateBackToMain.observe(viewLifecycleOwner, Observer{
+            if(it){
+                view?.findNavController()?.navigate(R.id.action_createNoteFragment_to_menuFragment3)
+                createNoteViewModel.onNavigateBackToMain()
+            }
+        })
 
         binding.clearButton.setOnClickListener {
             binding.textNote.text.clear()
