@@ -26,19 +26,28 @@ class MenuAdapter: RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater
-            .inflate(R.layout.text_item_view, parent, false) as TextView
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val noteText : TextView? = itemView.findViewById(R.id.title_note)
-        val noteTitle : TextView? = itemView.findViewById(R.id.note_string)
+    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val noteTitle : TextView? = itemView.findViewById(R.id.title_note)
+        val noteText : TextView? = itemView.findViewById(R.id.note_string)
 
         fun bind(item: Note) {
-            val res = itemView.context.resources
-            })
+            val res = itemView.context
+            noteText?.text = item.note
+            noteTitle?.text = item.noteTitle
         }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater
+                    .inflate(R.layout.list_item_note, parent, false)
+
+                return ViewHolder(view)
+            }
+        }
+
     }
 }

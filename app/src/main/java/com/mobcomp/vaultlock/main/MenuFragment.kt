@@ -47,7 +47,11 @@ class MenuFragment : Fragment() {
         val adapter = MenuAdapter()
         binding.noteList.adapter = adapter
 
-        menuViewModel.notes.observe(viewLifecycleOwner, Observer{ it?.let{adapter.data = it}})
+        menuViewModel.notes.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         menuViewModel.navigateToSearch.observe(viewLifecycleOwner, Observer {
             if(it) {
@@ -55,6 +59,9 @@ class MenuFragment : Fragment() {
                 menuViewModel.onNavigatedToSearch()
             }
         })
+
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 

@@ -1,11 +1,9 @@
 package com.mobcomp.vaultlock.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.mobcomp.vaultlock.database.NoteDatabaseDao
+import kotlinx.coroutines.launch
 
 class MenuViewModel(
     dataSource: NoteDatabaseDao,
@@ -25,10 +23,4 @@ class MenuViewModel(
     fun onNavigatedToSearch() {
         _navigateToSearch.value = false
     }
-
-    private suspend fun getAll(){
-        database.getAll()
-    }
-
-
 }
