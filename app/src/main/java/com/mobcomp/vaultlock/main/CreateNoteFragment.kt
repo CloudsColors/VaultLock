@@ -33,13 +33,6 @@ class CreateNoteFragment : Fragment() {
                 this, viewModelFactory).get(CreateNoteViewModel::class.java)
 
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_create_note, container, false)
-        /*binding.saveButton.setOnClickListener {
-            val note = Note()
-            note.noteTitle = binding.titleText.toString()
-            note.note = binding.textNote.toString()
-            //insert(note, dataSource)
-            view?.findNavController()?.navigate(R.id.action_createNoteFragment_to_menuFragment3)
-        }*/
 
         binding.createNoteViewModel = createNoteViewModel
 
@@ -48,10 +41,5 @@ class CreateNoteFragment : Fragment() {
             binding.titleText.text.clear()
         }
         return binding.root
-    }
-
-    private suspend fun insert(note: Note, dataSource: NoteDatabaseDao){
-        Log.d("Heyaaaaa", "asdadsdasd")
-        dataSource.insert(note)
     }
 }
