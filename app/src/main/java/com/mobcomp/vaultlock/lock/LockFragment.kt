@@ -1,6 +1,7 @@
 package com.mobcomp.vaultlock.lock
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -117,6 +118,16 @@ class LockFragment : Fragment(), View.OnTouchListener {
             }
         }
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getActivity()?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    }
+
+    override fun onPause() {
+        super.onPause()
+        getActivity()?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR;
     }
 
     fun unlockButton(){

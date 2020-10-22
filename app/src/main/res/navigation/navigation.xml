@@ -23,8 +23,8 @@
         <action
             android:id="@+id/action_menuFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/enter_from_bottom_up"
+            app:exitAnim="@anim/exit_to_top_up"
             app:launchSingleTop="true" />
     </fragment>
     <fragment
@@ -34,6 +34,8 @@
         <action
             android:id="@+id/action_createNoteFragment_to_menuFragment3"
             app:destination="@id/menuFragment"
+            app:exitAnim="@anim/exit_to_bottom_down"
+            app:popExitAnim="@anim/exit_to_bottom_down"
             app:popUpTo="@id/menuFragment"
             app:popUpToInclusive="false" />
     </fragment>
