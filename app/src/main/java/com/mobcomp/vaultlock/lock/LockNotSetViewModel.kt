@@ -11,7 +11,7 @@ class LockNotSetViewModel(
         ) : AndroidViewModel(application){
 
     fun onSavePassword(v: View){
-        v.
+        return
     }
 
 }
