@@ -18,13 +18,13 @@
             android:id="@+id/vault_lock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_vault"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_vault" />
 
         <TextView
             android:id="@+id/passwordText"
@@ -55,6 +55,39 @@
             android:text="Unlock"
             app:layout_constraintBaseline_toBaselineOf="@+id/resetButton"
             app:layout_constraintEnd_toStartOf="@+id/resetButton" />
+
+        <TextView
+            android:id="@+id/lockNumbersCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lockNumbersString"
+            app:layout_constraintBottom_toBottomOf="@+id/vault_lock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordText"
+            app:layout_constraintVertical_bias="0.134" />
+
+        <TextView
+            android:id="@+id/lockNumbersLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/vault_lock"
+            app:layout_constraintEnd_toEndOf="@+id/vault_lock"
+            app:layout_constraintHorizontal_bias="0.297"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lockNumbersCenter"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <TextView
+            android:id="@+id/lockNumbersRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintBaseline_toBaselineOf="@+id/lockNumbersLeft"
+            app:layout_constraintEnd_toEndOf="@+id/vault_lock"
+            app:layout_constraintHorizontal_bias="0.742"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

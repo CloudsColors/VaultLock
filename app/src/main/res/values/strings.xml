@@ -1,6 +1,12 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">VaultLock</string>
     <string name="title">Enter a title..</string>
     <string name="note">Note text...</string>
     <string name="pass">Password</string>
+    <string name="lockNumbersString">
+        <xliff:g id="leftNum" example="11">%d</xliff:g>
+        <xliff:g id="centerNum" example="11" ><b>%d</b></xliff:g>
+        <xliff:g id="rightNum" example="11">%d</xliff:g>
+
+    </string>
 </resources>

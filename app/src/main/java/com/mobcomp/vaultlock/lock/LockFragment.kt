@@ -108,6 +108,8 @@ class LockFragment : Fragment(), View.OnTouchListener {
                 }
                 MotionEvent.ACTION_MOVE -> {
                     updateRotation(x,y)
+                    displayNumbers()
+
                     if(rightPosition){
                         updateRotation(x,y)
                     }
@@ -146,5 +148,34 @@ class LockFragment : Fragment(), View.OnTouchListener {
     fun resetButton(){
         binding.lockViewModel?.resetPassword()
         binding.vaultLock.rotation = 0f
+    }
+
+    fun displayNumbers(){
+        var lockNums = binding.lockNumbersCenter
+        var knobPos : Int = (binding.vaultLock.rotation / 30).roundToInt()
+
+        if (knobPos <= 0) {
+            knobPos += 12;
+        }
+
+
+        var leftNum: Int
+        var centerNum = knobPos
+        var rightNum: Int
+
+        if(knobPos == 12) {
+            rightNum = knobPos - 11
+        } else {
+            rightNum = knobPos + 1
+        }
+
+        if(knobPos == 1){
+            leftNum = knobPos + 11
+        } else
+            leftNum = knobPos - 1
+
+        lockNums.text =
+            getString(R.string.lockNumbersString, leftNum,centerNum,rightNum)
+
     }
 }
