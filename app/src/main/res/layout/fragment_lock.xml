@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -43,51 +43,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:text="Reset"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/unlockButton"
+            app:layout_constraintEnd_toStartOf="@+id/unlockButton" />
 
         <Button
             android:id="@+id/unlockButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:text="Unlock"
-            app:layout_constraintBaseline_toBaselineOf="@+id/resetButton"
-            app:layout_constraintEnd_toStartOf="@+id/resetButton" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/lockNumbersCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lockNumbersString"
-            app:layout_constraintBottom_toBottomOf="@+id/vault_lock"
+            android:layout_marginTop="16dp"
+            android:text="12"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordText"
-            app:layout_constraintVertical_bias="0.134" />
-
-        <TextView
-            android:id="@+id/lockNumbersLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="@+id/vault_lock"
-            app:layout_constraintEnd_toEndOf="@+id/vault_lock"
-            app:layout_constraintHorizontal_bias="0.297"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lockNumbersCenter"
-            app:layout_constraintVertical_bias="0.025" />
-
-        <TextView
-            android:id="@+id/lockNumbersRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            app:layout_constraintBaseline_toBaselineOf="@+id/lockNumbersLeft"
-            app:layout_constraintEnd_toEndOf="@+id/vault_lock"
-            app:layout_constraintHorizontal_bias="0.742"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

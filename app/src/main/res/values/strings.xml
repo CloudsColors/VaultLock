@@ -2,12 +2,7 @@
     <string name="app_name">VaultLock</string>
     <string name="title">Enter a title..</string>
     <string name="note">Note text...</string>
-    <string name="lockNumbersString">
-        <xliff:g id="leftNum" example="11">%d</xliff:g>
-        <xliff:g id="centerNum" example="11" ><b>%d</b></xliff:g>
-        <xliff:g id="rightNum" example="11">%d</xliff:g>
-
-    </string>
+    <string name="lockNumbersStringCenter">12</string>
     <string name="first_turn">First turn</string>
     <string name="second_turn">Second turn</string>
     <string name="third_turn">Third turn</string>

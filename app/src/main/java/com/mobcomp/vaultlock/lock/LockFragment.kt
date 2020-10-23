@@ -151,34 +151,22 @@ class LockFragment : Fragment(), View.OnTouchListener {
     fun resetButton(){
         binding.lockViewModel?.resetPassword()
         binding.vaultLock.rotation = 0f
+        displayNumbers()
     }
 
     fun displayNumbers(){
-        var lockNums = binding.lockNumbersCenter
+        var lockCenter = binding.lockNumbersCenter
+
         var knobPos : Int = (binding.vaultLock.rotation / 30).roundToInt()
 
         if (knobPos <= 0) {
             knobPos += 12;
         }
-
-
-        var leftNum: Int
         var centerNum = knobPos
-        var rightNum: Int
 
-        if(knobPos == 12) {
-            rightNum = knobPos - 11
-        } else {
-            rightNum = knobPos + 1
-        }
+        lockCenter.text = centerNum.toString()
 
-        if(knobPos == 1){
-            leftNum = knobPos + 11
-        } else
-            leftNum = knobPos - 1
 
-        lockNums.text =
-            getString(R.string.lockNumbersString, leftNum,centerNum,rightNum)
 
     }
 }
