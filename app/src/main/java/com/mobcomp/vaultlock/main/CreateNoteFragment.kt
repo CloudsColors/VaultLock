@@ -24,6 +24,9 @@ class CreateNoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        activity?.title = "VaultLock - Create new note";
+
         val application = requireNotNull(this.activity).application
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
         val viewModelFactory = ViewModelFactory(dataSource, application)
