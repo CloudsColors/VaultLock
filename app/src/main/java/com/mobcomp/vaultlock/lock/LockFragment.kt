@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.findFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -54,6 +53,15 @@ class LockFragment : Fragment(), View.OnTouchListener {
         val lockViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(LockViewModel::class.java)
+
+        lockViewModel.getPasswordFromDatabase()
+
+        lockViewModel.isPasswordSet.observe(viewLifecycleOwner, Observer {
+            if (!it){
+                view?.findNavController()?.navigate(R.id.action_lockFragment_to_lockNotSetFragment)
+                lockViewModel.navigateToSetPasswordDone()
+            }
+        })
 
         binding.lockViewModel = lockViewModel
 

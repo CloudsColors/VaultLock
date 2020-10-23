@@ -8,8 +8,12 @@ import androidx.room.PrimaryKey
 data class Password (
     @PrimaryKey(autoGenerate = true)
     var id : Long = 0L,
-    @ColumnInfo(name = "password")
-    var password : String = "",
-    @ColumnInfo(name = "time_set")
-    val timeCreated : Long = System.currentTimeMillis()
+    @ColumnInfo(name = "password_f1")
+    var password_f1 : String = "",
+    @ColumnInfo(name = "password_f2")
+    var password_f2 : String = "",
+    @ColumnInfo(name = "password_f3")
+    var password_f3 : String = "",
+    @ColumnInfo(name = "password_f4")
+    var password_f4 : String = ""
 )
