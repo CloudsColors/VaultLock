@@ -104,9 +104,11 @@ class LockViewModel(
         if(oldDirection != direction){
             Log.d("KNOBPASS", "ENTRYCODE $knobPosition")
             passwordLogic(knobPosition)
+
         }
         knobPosition = knobPosCorrected
         Log.d("KNOBDIRECTION", "direction: $direction knobPosition: $knobPosition knobPosCorrected: $knobPosCorrected")
+
     }
 
     fun getPasswordFromDatabase() {
