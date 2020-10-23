@@ -17,6 +17,9 @@
             app:exitAnim="@anim/exit_to_right"
             app:popEnterAnim="@anim/enter_from_right"
             app:popExitAnim="@anim/exit_to_left" />
+        <action
+            android:id="@+id/action_lockFragment_to_lockNotSetFragment"
+            app:destination="@id/lockNotSetFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -56,6 +59,8 @@
         <action
             android:id="@+id/action_lockNotSetFragment_to_menuFragment"
             app:destination="@id/menuFragment"
+            app:enterAnim="@anim/enter_from_bottom_up"
+            app:exitAnim="@anim/exit_to_top_up"
             app:popUpTo="@id/menuFragment"
             app:popUpToInclusive="false" />
     </fragment>

@@ -5,22 +5,37 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.mobcomp.vaultlock.database.Password
 import com.mobcomp.vaultlock.database.PasswordDatabaseDao
+import kotlinx.coroutines.launch
 import java.util.*
 
 class LockViewModel(
     val database: PasswordDatabaseDao,
     application: Application) : AndroidViewModel(application){
 
-    private val pass: IntArray = intArrayOf(11,5,9,2)
+    private lateinit var pass: IntArray
     private var input: IntArray = intArrayOf(0,0,0,0)
     private var knobPosition: Int = 12
     private var direction: Int = 0
     private var passwordIndex = 0
 
+    private var _isPasswordSet = MutableLiveData<Boolean>()
+    val isPasswordSet : LiveData<Boolean>
+        get() = _isPasswordSet
+
     private var _passwordText = MutableLiveData<String>()
     val passwordText : LiveData<String>
         get() = _passwordText
+
+    fun navigateToSetPassword(){
+        _isPasswordSet.value = false
+    }
+
+    fun navigateToSetPasswordDone(){
+        _isPasswordSet.value = true
+    }
 
     private fun updateText() {
         var tempPassText: String = ""
@@ -92,6 +107,22 @@ class LockViewModel(
         }
         knobPosition = knobPosCorrected
         Log.d("KNOBDIRECTION", "direction: $direction knobPosition: $knobPosition knobPosCorrected: $knobPosCorrected")
+    }
+
+    fun getPasswordFromDatabase() {
+        viewModelScope.launch{
+            var password = IntArray(4)
+            var query = database.getPassword()
+            if(query.isNotEmpty()) {
+                password[0] = query?.get(0).password_f1?.toInt()!!
+                password[1] = query.get(0).password_f2.toInt()
+                password[2] = query.get(0).password_f3.toInt()
+                password[3] = query.get(0).password_f4.toInt()
+                pass = password
+            }else{
+                navigateToSetPassword()
+            }
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.mobcomp.vaultlock.R
 import com.mobcomp.vaultlock.database.PasswordDatabase
 import com.mobcomp.vaultlock.databinding.FragmentLockNotSetBinding
@@ -42,6 +43,13 @@ class LockNotSetFragment : Fragment() {
             if(it){
                 Toast.makeText(context,"Incompatible password", Toast.LENGTH_LONG).show()
                 lockNotSetViewModel.onToastReset()
+            }
+        })
+
+        lockNotSetViewModel.onPasswordSet.observe(viewLifecycleOwner, Observer{
+            if(it){
+                view?.findNavController()?.navigate(R.id.action_lockNotSetFragment_to_menuFragment)
+                lockNotSetViewModel.onPasswordSucessDone()
             }
         })
 

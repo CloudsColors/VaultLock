@@ -10,7 +10,6 @@ import com.mobcomp.vaultlock.database.NoteDatabase
 import com.mobcomp.vaultlock.databinding.FragmentMenuBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 
 
 /**
@@ -21,7 +20,6 @@ import androidx.navigation.ui.NavigationUI
 class MenuFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,8 +60,6 @@ class MenuFragment : Fragment() {
             }
         })
 
-
-
         binding.lifecycleOwner = this
         setHasOptionsMenu(true)
 
@@ -78,10 +74,6 @@ class MenuFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         view?.findNavController()?.navigate(item.itemId)
         return true
-
-        /*return NavigationUI.
-        onNavDestinationSelected(item,requireView().findNavController())
-                || super.onOptionsItemSelected(item)*/
     }
 
 
