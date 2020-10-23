@@ -17,6 +17,8 @@ class LockViewModelFactory(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LockViewModel::class.java)) {
             return LockViewModel(dataSource, application) as T
+        }else if(modelClass.isAssignableFrom(LockNotSetViewModel::class.java)){
+            return LockNotSetViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

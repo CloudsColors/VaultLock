@@ -24,6 +24,9 @@ class CreateNoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        activity?.title = "VaultLock - Create new note";
+
         val application = requireNotNull(this.activity).application
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
         val viewModelFactory = ViewModelFactory(dataSource, application)
@@ -34,6 +37,8 @@ class CreateNoteFragment : Fragment() {
                 this, viewModelFactory).get(CreateNoteViewModel::class.java)
 
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_create_note, container, false)
+
+        binding.lifecycleOwner = this
 
         binding.createNoteViewModel = createNoteViewModel
 
@@ -48,6 +53,7 @@ class CreateNoteFragment : Fragment() {
             binding.textNote.text.clear()
             binding.titleText.text.clear()
         }
+
         return binding.root
     }
 }

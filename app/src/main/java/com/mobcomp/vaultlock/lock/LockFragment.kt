@@ -34,6 +34,9 @@ class LockFragment : Fragment(), View.OnTouchListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        activity?.title = "VaultLock";
+
         binding = DataBindingUtil.inflate<FragmentLockBinding>(
             inflater, R.layout.fragment_lock, container, false
         )

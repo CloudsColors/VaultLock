@@ -27,6 +27,9 @@ class MenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        activity?.title = "VaultLock - Notes";
+
         val binding = DataBindingUtil.inflate<FragmentMenuBinding>(inflater,
             R.layout.fragment_menu,container,false)
 
@@ -73,9 +76,12 @@ class MenuFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.
+        view?.findNavController()?.navigate(item.itemId)
+        return true
+
+        /*return NavigationUI.
         onNavDestinationSelected(item,requireView().findNavController())
-                || super.onOptionsItemSelected(item)
+                || super.onOptionsItemSelected(item)*/
     }
 
 

@@ -27,9 +27,15 @@
             app:destination="@id/createNoteFragment"
             app:enterAnim="@anim/enter_from_bottom_up"
             app:exitAnim="@anim/exit_to_top_up"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/enter_from_top_down"
             app:popExitAnim="@anim/exit_to_bottom_down" />
+        <action
+            android:id="@+id/action_menuFragment_to_lockNotSetFragment"
+            app:destination="@id/lockNotSetFragment"
+            app:enterAnim="@anim/enter_from_top_down"
+            app:exitAnim="@anim/exit_to_bottom_down"
+            app:popEnterAnim="@anim/enter_from_bottom_up"
+            app:popExitAnim="@anim/exit_to_top_up" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
@@ -40,6 +46,16 @@
             app:destination="@id/menuFragment"
             app:enterAnim="@anim/enter_from_top_down"
             app:exitAnim="@anim/exit_to_bottom_down"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/lockNotSetFragment"
+        android:name="com.mobcomp.vaultlock.lock.LockNotSetFragment"
+        android:label="LockNotSetFragment" >
+        <action
+            android:id="@+id/action_lockNotSetFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
             app:popUpTo="@id/menuFragment"
             app:popUpToInclusive="false" />
     </fragment>
