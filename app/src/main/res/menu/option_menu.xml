@@ -3,6 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/lockNotSetFragment"
+        android:id="@+id/action_menuFragment_to_lockNotSetFragment"
         android:title="@string/pass" />
 </menu>

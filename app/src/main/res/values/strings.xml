@@ -7,5 +7,12 @@
     <string name="third_turn">Third turn</string>
     <string name="stop_turn">Stop turn</string>
     <string name="set_password">Set password</string>
-    <string name="pass">Password</string>
+    <string name="pass">Set password</string>
+    <string name="password_hint">
+        The password must follow these rules to be a valid password:\n
+        &#8226; First number cannot be 12.\n
+        &#8226; All numbers must be less than or equal to 12 except see above.\n
+        &#8226; All numbers must be bigger than or equal to 1.\n
+        &#8226; You can not use the same number between two turns.\n
+</string>
 </resources>

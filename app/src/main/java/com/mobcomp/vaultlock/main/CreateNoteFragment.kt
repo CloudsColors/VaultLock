@@ -38,6 +38,8 @@ class CreateNoteFragment : Fragment() {
 
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_create_note, container, false)
 
+        binding.lifecycleOwner = this
+
         binding.createNoteViewModel = createNoteViewModel
 
         createNoteViewModel.navigateBackToMain.observe(viewLifecycleOwner, Observer{
@@ -51,6 +53,7 @@ class CreateNoteFragment : Fragment() {
             binding.textNote.text.clear()
             binding.titleText.text.clear()
         }
+
         return binding.root
     }
 }
